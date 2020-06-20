@@ -1,8 +1,20 @@
 <?php
+require_once("site/inc/init.inc.php");
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//--------------------------------- TRAITEMENTS PHP ---------------------------------//
 
+if(!internauteEstConnecte())
+{ 
+    header ("location:connexion.php");   
+}
+// debug($_SESSION);
+$contenu .= '<p class="centre"> Bonjour <strong>' . $_SESSION['membre']['pseudo'] . '</strong> </p>';
+$contenu .= '<div class=""cadre><h2> Voici les infos du Profil</h2>';
+$contenu .= '<p> votre email est: ' . $_SESSION['membre']['email'] . '<br>';
+$contenu .= 'votre ville est: ' . $_SESSION['membre']['ville'] . '<br>';
+$contenu .= 'votre cp est: ' . $_SESSION['membre']['code_postal'] . '<br>';
+$contenu .= 'votre adresse est: ' . $_SESSION['membre']['adresse'] . '</p></div><br><br>';
+//--------------------------------- AFFICHAGE HTML ---------------------------------//
+require_once("site/inc/haut.inc.php");
+echo $contenu;
+require_once("site/inc/bas.inc.php");

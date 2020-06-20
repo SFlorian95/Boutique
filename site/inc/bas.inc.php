@@ -1,8 +1,9 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+       </div>
+        </section>
+        <footer>
+            <div class="conteneur">
+                <?php echo date('Y'); ?> - Tous droits reservés - Nawenn
+            </div>
+        </footer>        
+    </body>
+</html>

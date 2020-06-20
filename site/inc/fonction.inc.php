@@ -1,8 +1,39 @@
 <?php
+function executeRequete($req){
+    global $mysqli;
+    $resultat = $mysqli->query($req);
+    if(!$resultat)//
+    {
+        die("Erreur sur la requête sql.<br>Message : " . $mysqli>error . "<br> Code : " . $req);
+    }
+     return $resultat; //   
+}
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+function debug($var, $mode = 1)
+{
+    echo '<div style="background: orange; padding: 5px; float: right; clear: both; ">';
+    $trace = debug_backtrace();
+    $trace = array_shift($trace);
+    echo 'Debug demandé dans le fichier : $trace[file] à la ligne $trace[line].';
+    if($mode === 1)
+    {
+       echo '<pre>'; print_r($var); echo '</pre>';
+    }
+    else
+    {
+       echo '<pre>'; var_dump($var); echo '</pre>';
+    }
+    echo '</div>';
+}
 
+function internauteEstConnecte()
+{
+    if(!isset($_SESSION['membre'])) return false ;
+    else return true;
+}
+
+function internauteEstConnecteEtEstAdmin()
+{
+    if(internauteEstConnecte() && $_SESSION[membre][statut] == 1) return true;
+    else return false;
+}
